@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(cors({
-    origin: "https://sahanalr23.github.io/Portfolio", // Allow only your portfolio
+    origin: "https://sahanalr23.github.io/", // Allow only your portfolio
     methods: ["POST", "GET"],
     credentials: true,
 }));

@@ -13,6 +13,7 @@ app.use(cors());
 // Email sending route
 app.post("/send-email", async (req, res) => {
     const { name, email, subject, message } = req.body;
+    const decodedPassword = Buffer.from(process.env.EMAIL_PASS_BASE64, 'base64').toString('utf-8');
 
     if (!name || !email || !subject || !message) {
         return res.status(400).json({ error: "All fields are required" });
@@ -23,7 +24,7 @@ app.post("/send-email", async (req, res) => {
             service: "gmail",
             auth: {
                 user: process.env.EMAIL_USER, // Your Gmail
-                pass: process.env.EMAIL_PASS, // App password (Not regular password)
+                pass: decodedPassword, // App password (Not regular password/ decoded)
             },
         });
 

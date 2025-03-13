@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(cors({
-    origin: "https://sahanalr23.github.io/", // Allow only your portfolio
+    origin: "https://sahanalr23.github.io", // Allow only your portfolio
     methods: ["POST", "GET"],
     credentials: true,
 }));
@@ -20,7 +20,9 @@ app.use(cors({
 // Email sending route
 app.post("/send-email", async (req, res) => {
     const { name, email, subject, message } = req.body;
+
     const decodedPassword = Buffer.from(process.env.EMAIL_PASS_BASE64, 'base64').toString('utf-8');
+
 
     if (!name || !email || !subject || !message) {
         return res.status(400).json({ error: "All fields are required" });
